@@ -64,6 +64,7 @@ jobs:
     needs: [build_apk]
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v1
       - name: Download Artifact
         uses: actions/download-artifact@master
         with:
