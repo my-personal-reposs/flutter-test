@@ -84,10 +84,10 @@ jobs:
         with:
           lane: upload_to_google_play_store #Here you can define the lane need to be executed with the work flow.
           subdirectory: 'android' #mention if the fastlane folder is inside the android folder.
-  final:
-    name: final action
-    needs: [upload_to_google, beta_apk]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Send message about start
-        run: curl -s -X POST https://api.telegram.org/${{secrets.TELEGRAM_BOT}}/sendMessage -d chat_id=-569985592 -d parse_mode='HTML' -d text='Finish'
+#  final:
+#    name: final action
+#    needs: [upload_to_google, beta_apk]
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Send message about start
+#        run: curl -s -X POST https://api.telegram.org/${{secrets.TELEGRAM_BOT}}/sendMessage -d chat_id=-569985592 -d parse_mode='HTML' -d text='Finish'
