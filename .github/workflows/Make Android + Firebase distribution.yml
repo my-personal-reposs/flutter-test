@@ -22,17 +22,22 @@ jobs:
      - name: Decode Keystore
        run: |
          echo "${{secrets.KEYSTORE}}" | base64 --decode > android/key.jks
-     - name: Create key.properties
-       run: |
-         touch android/key.properties
-         echo "storePassword=romanson7
-         keyPassword=romanson7
-         keyAlias=release
-         storeFile=../key.jks"  > ./android/key.properties
+#     - name: Create key.properties
+#       run: |
+#         touch android/key.properties
+#         echo "storePassword=romanson7
+#         keyPassword=romanson7
+#         keyAlias=release
+#         storeFile=../key.jks"  > ./android/key.properties
      - name: Get dependencies
        run: flutter pub get
      - name: Build APK
-       run: flutter build apk
+       run: flutter build apk --release
+       env:
+         STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
+         KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+         KEY_ALIAS: ${{ secrets.ALIAS }}
+         STORE_FILE: ${{ secrets.KEYSTORE }}
      - uses: actions/upload-artifact@v1
        with:
          name: release-apk
