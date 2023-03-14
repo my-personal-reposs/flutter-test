@@ -14,3 +14,9 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+
+```
+cat my.android.keystore.jks | base64 > my.android.keystore.base64
+? cat my.android.keystore.base64 | base64 --decode  
+```
