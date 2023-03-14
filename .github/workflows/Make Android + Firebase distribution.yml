@@ -19,7 +19,7 @@ jobs:
          SIGNING_STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
      - name: Decode Keystore
        run: |
-         cat "${{secrets.KEYSTORE}}" | base64 --decode > android/key.jks
+         echo "${{secrets.KEYSTORE}}" | base64 --decode > android/key.jks
      - name: Create key.properties
        run: |
          touch android/key.properties
