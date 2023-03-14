@@ -36,7 +36,7 @@ jobs:
          STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
          KEY_ALIAS: ${{ secrets.ALIAS }}
-         STORE_FILE: android/key.jks
+         STORE_FILE: ./android/key.jks
      - uses: actions/upload-artifact@v3
        with:
          name: release-apk
