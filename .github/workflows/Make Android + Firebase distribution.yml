@@ -21,13 +21,6 @@ jobs:
      - name: Decode Keystore
        run: |
          echo "${{secrets.KEYSTORE}}" | base64 --decode > android/key.jks
-#     - name: Create key.properties
-#       run: |
-#         touch android/key.properties
-#         echo "storePassword=romanson7
-#         keyPassword=romanson7
-#         keyAlias=release
-#         storeFile=../key.jks"  > ./android/key.properties
      - name: Get dependencies
        run: flutter pub get
      - name: Build APK
@@ -63,3 +56,21 @@ jobs:
 #          serviceCredentialsFileContent: ${{ secrets.FIREBASE_CREDENTIAL_FILE_CONTENT }}
           groups: testers
           file: app-release.apk
+  upload_to_google:
+    name: Upload App to Google Play
+    needs: [build_apk]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Decode Google Service Account Key
+        run: |
+          echo "${{secrets.GOOGLE_SERVICE_ACCOUNT_KEY}}" | base64 --decode > android/fastlane/google-console-service-account-private-key2.json
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0'
+          bundler-cache: true
+          working-directory: 'android'
+      - name: Run Fastlane
+        uses: maierj/fastlane-action@v3 #Use this plugin developed by the community for the fastlane actions
+        with:
+          lane: upload_to_google_play_store #Here you can define the lane need to be executed with the work flow.
+          subdirectory: 'android' #mention if the fastlane folder is inside the android folder.
