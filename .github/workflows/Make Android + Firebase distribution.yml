@@ -6,10 +6,10 @@ jobs:
    runs-on: ubuntu-latest
    steps:
      - uses: actions/checkout@v1
-     - uses: actions/setup-java@v1
+     - uses: actions/setup-java@v3.10.0
        with:
          java-version: "12.x"
-     - uses: subosito/flutter-action@v1
+     - uses: subosito/flutter-action@v2
        with:
          channel: "stable"
        env:
@@ -36,7 +36,7 @@ jobs:
          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
          KEY_ALIAS: ${{ secrets.ALIAS }}
          STORE_FILE: ${{ secrets.KEYSTORE }}
-     - uses: actions/upload-artifact@v1
+     - uses: actions/upload-artifact@v3
        with:
          name: release-apk
          path: build/app/outputs/apk/release/app-release.apk
