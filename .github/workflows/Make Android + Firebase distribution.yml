@@ -6,7 +6,7 @@ jobs:
    runs-on: ubuntu-latest
    steps:
      - name: Send message about start
-        run: curl -s -X POST https://api.telegram.org/${{secrets.TELEGRAM_BOT}}/sendMessage -d chat_id=-569985592 -d parse_mode='HTML' -d text='Start'
+       run: curl -s -X POST https://api.telegram.org/${{secrets.TELEGRAM_BOT}}/sendMessage -d chat_id=-569985592 -d parse_mode='HTML' -d text='Start'
      - uses: actions/checkout@v1
      - uses: actions/setup-java@v3
        with:
@@ -88,4 +88,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Send message about start
-          run: curl -s -X POST https://api.telegram.org/${{secrets.TELEGRAM_BOT}}/sendMessage -d chat_id=-569985592 -d parse_mode='HTML' -d text='Finish'
+        run: curl -s -X POST https://api.telegram.org/${{secrets.TELEGRAM_BOT}}/sendMessage -d chat_id=-569985592 -d parse_mode='HTML' -d text='Finish'
