@@ -35,4 +35,23 @@ platform :android do
     gradle(task: "clean assembleRelease")
     upload_to_play_store
   end
+
+
+  desc “Deploy to closed beta track”
+  lane :upload_to_google_play_store do
+    begin
+#         gradle(task: “clean”)
+#         gradle(task: “bundle”, build_type: ‘Release’)
+
+        upload_to_play_store(
+            track: ‘beta’,
+            aab: ‘../output/app-release.aab’,
+            skip_upload_metadata: true,
+            skip_upload_images: true,
+            skip_upload_screenshots: true,
+            release_status: “draft”,
+        )
+    end
+  end
+
 end
