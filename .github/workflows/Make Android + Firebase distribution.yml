@@ -71,7 +71,8 @@ jobs:
           path: ./output
       - name: Decode Google Service Account Key
         run: |
-          echo "${{secrets.GOOGLE_SERVICE_ACCOUNT_KEY}}" | base64 --decode > android/fastlane/google-console-service-account-private-key2.json
+          pwd
+          echo "${{secrets.GOOGLE_SERVICE_ACCOUNT_KEY}}" | base64 --decode > ./android/fastlane/google-console-service-account-private-key2.json
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.0'
